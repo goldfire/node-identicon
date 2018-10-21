@@ -29,9 +29,9 @@
 
 var crypto = require('crypto');
 try {
-  var Canvas = require('canvas');
+  var {createCanvas, Canvas} = require('canvas');
 } catch (err) {
-  var Canvas = require('canvas-prebuilt') || require('./lib/canvas');
+  var {createCanvas, Canvas} = require('canvas-prebuilt') || require('./lib/canvas');
 }
 
 var patch0 = new Array(0, 4, 24, 20);
@@ -129,7 +129,7 @@ function _gen(str, size, callback) {
     var code = (hash.charCodeAt(0) << 24) | (hash.charCodeAt(1) << 16) |
     (hash.charCodeAt(2) << 8) | hash.charCodeAt(3);
 
-    var canvas = new Canvas(size, size);
+    var canvas = createCanvas(size, size);
     var ctx = canvas.getContext('2d');
 
     render_identicon(ctx, code, size);
